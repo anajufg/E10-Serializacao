@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.Date;
 
-abstract class Cliente {
+abstract class Cliente implements Serializable {
 
     private String nome;
 

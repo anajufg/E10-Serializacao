@@ -4,11 +4,12 @@
  * @author João Eduardo Montandon
  */
 
+import java.io.Serializable;
 import java.util.Date;
 /**
  * Classe responsável por registrar operações de saque e depósitos realizados em contas correntes.
  */
-abstract class Operacao implements ITaxas, Comparable<Operacao>{
+abstract class Operacao implements ITaxas, Comparable<Operacao>, Serializable {
 
     /* Data de realização da operação */
     private Date data;

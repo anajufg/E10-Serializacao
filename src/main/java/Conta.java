@@ -1,16 +1,16 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.io.Serializable;
 
 abstract class Conta implements ITaxas, Serializable{
 
-    final private static long serialVertionUID = 10000L;
+    final private static long serialVertionUID = 1L;
 
     private int numero;
 
     private Cliente dono;
 
-    private String agencia;
+    private int agencia;
 
     private double saldo;
 
@@ -18,9 +18,9 @@ abstract class Conta implements ITaxas, Serializable{
 
     private ArrayList<Operacao> operacoes;
 
-    private static int totalContas = 0;
+    private transient static int totalContas = 0;
 
-    public Conta(int numero, Cliente dono, double saldo, double limite, String agencia) {
+    public Conta(int numero, Cliente dono, double saldo, double limite, int agencia) {
         this.numero = numero;
         this.dono = dono;
         this.saldo = saldo;
@@ -31,8 +31,13 @@ abstract class Conta implements ITaxas, Serializable{
         Conta.totalContas++;
     }
 
-    public void salvar() {
+    public void salvarEmArquivo() throws IOException {
+        String nomeArquivo = this.agencia + "-" + this.numero + ".ser";
 
+        FileOutputStream fileOut = new FileOutputStream(nomeArquivo);
+        ObjectOutputStream out = new ObjectOutputStream(fileOut);
+        out.writeObject(this);
+        fileOut.close();
     }
 
     public void depositar(double valor) throws ValorNegativoException {
@@ -155,7 +160,7 @@ abstract class Conta implements ITaxas, Serializable{
         return limite;
     }
 
-    public String getAgencia() {
+    public int getAgencia() {
         return agencia;
     }
 
@@ -171,7 +176,7 @@ abstract class Conta implements ITaxas, Serializable{
         this.dono = dono;
     }
 
-    public void setAgencia(String agencia) {
+    public void setAgencia(int agencia) {
         this.agencia = agencia;
     }
 

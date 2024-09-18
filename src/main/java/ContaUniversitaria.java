@@ -1,5 +1,5 @@
 public class ContaUniversitaria extends Conta {
-    public ContaUniversitaria(int numero, Cliente dono, double saldo, double limite, String agencia) {
+    public ContaUniversitaria(int numero, Cliente dono, double saldo, double limite, int agencia) {
         super(numero, dono, saldo, limite, agencia);
     }
 

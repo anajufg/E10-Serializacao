@@ -1,6 +1,6 @@
 public class ContaCorrente extends Conta {
 
-    public ContaCorrente(int numero, Cliente dono, double saldo, double limite, String agencia) {
+    public ContaCorrente(int numero, Cliente dono, double saldo, double limite, int agencia) {
         super(numero, dono, saldo, limite, agencia);
     }
 
