@@ -1,11 +1,16 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.io.Serializable;
 
-abstract class Conta implements ITaxas{
+abstract class Conta implements ITaxas, Serializable{
+
+    final private static long serialVertionUID = 10000L;
 
     private int numero;
 
     private Cliente dono;
+
+    private String agencia;
 
     private double saldo;
 
@@ -15,14 +20,19 @@ abstract class Conta implements ITaxas{
 
     private static int totalContas = 0;
 
-    public Conta(int numero, Cliente dono, double saldo, double limite) {
+    public Conta(int numero, Cliente dono, double saldo, double limite, String agencia) {
         this.numero = numero;
         this.dono = dono;
         this.saldo = saldo;
         this.limite = limite;
+        this.agencia = agencia;
 
         this.operacoes = new ArrayList<>();
         Conta.totalContas++;
+    }
+
+    public void salvar() {
+
     }
 
     public void depositar(double valor) throws ValorNegativoException {
@@ -145,6 +155,10 @@ abstract class Conta implements ITaxas{
         return limite;
     }
 
+    public String getAgencia() {
+        return agencia;
+    }
+
     public static int getTotalContas() {
         return Conta.totalContas;
     }
@@ -155,6 +169,10 @@ abstract class Conta implements ITaxas{
 
     public void setDono(Cliente dono) {
         this.dono = dono;
+    }
+
+    public void setAgencia(String agencia) {
+        this.agencia = agencia;
     }
 
     // Set limite

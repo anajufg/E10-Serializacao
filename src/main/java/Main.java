@@ -12,29 +12,11 @@ public class Main {
         Cliente lojinha = new PessoaJuridica("Loja R$1,99", "Av. Afonso Pena, 3000",
                 new Date(), "000.00000.0000/0001", 25, "Comércio");
 
-        Conta conta1 = new ContaCorrente(1234, joao, 0, 1500);
-        Conta conta2 = new ContaCorrente(1234, lojinha, 10000, 150);
+        Conta conta1 = new ContaCorrente(1234, joao, 0, 1500, "Banco do Brasil");
+        Conta conta2 = new ContaCorrente(1234, lojinha, 10000, 150, "Santander");
 
 
-        try {
-            conta1.depositar(-3000);
-        } catch (ValorNegativoException e) {
-            System.out.println(e.getMessage());
-        }
 
-        try {
-            conta1.sacar(-300);
-        } catch (ValorNegativoException | SemLimiteException e) {
-            System.out.println(e.getMessage());
-        }
-
-        try {
-            conta2.transferir(conta1, 200);
-        } catch (ValorNegativoException | SemLimiteException e) {
-            System.out.println(e.getMessage());
-        }
-
-        conta2.setLimite(-1000);
 
     }
 }
